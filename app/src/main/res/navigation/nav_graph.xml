@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/noteListFragment">
+
+    <fragment android:id="@+id/noteListFragment"
+              android:name="com.example.navigationdemo1.NoteListFragment"
+              android:label="fragment_note_list" tools:layout="@layout/fragment_note_list">
+        <action
+                android:id="@+id/action_notes_to_addNote"
+                app:destination="@id/addNoteFragment" />
+
+        <action
+                android:id="@+id/action_notes_to_noteDetail"
+                app:destination="@id/noteDetailFragment"
+                app:enterAnim="@anim/enter_slide_down"
+                app:exitAnim="@anim/exit_slide_down"
+                app:popEnterAnim="@anim/pop_enter_slide_up"
+                app:popExitAnim="@anim/pop_exit_slide_up" />
+    </fragment>
+    <fragment android:id="@+id/noteDetailFragment" android:name="com.example.navigationdemo1.NoteDetailFragment"
+              android:label="fragment_note_detail" tools:layout="@layout/fragment_note_detail">
+        <argument
+                android:name="noteId"
+                app:argType="integer" />
+
+        <action
+                android:id="@+id/action_noteDetail_to_editNote"
+                app:destination="@id/editNoteFragment" />
+
+        <action
+                android:id="@+id/action_noteDetail_to_deleteNote"
+                app:destination="@id/deleteNoteFragment" />
+
+        <deepLink
+                android:id="@+id/noteDetailDeepLink"
+                app:uri="notesapp://notes/{noteId}" />
+    </fragment>
+    <fragment android:id="@+id/addNoteFragment" android:name="com.example.navigationdemo1.AddNoteFragment"
+              android:label="fragment_add_note" tools:layout="@layout/fragment_add_note"/>
+    <fragment android:id="@+id/editNoteFragment" android:name="com.example.navigationdemo1.EditNoteFragment"
+              android:label="fragment_edit_note" tools:layout="@layout/fragment_edit_note">
+        <argument
+                android:name="noteId"
+                app:argType="integer" />
+    </fragment>
+    <fragment android:id="@+id/deleteNoteFragment" android:name="com.example.navigationdemo1.DeleteNoteFragment"
+              android:label="fragment_delete_note" tools:layout="@layout/fragment_delete_note">
+        <argument
+                android:name="noteId"
+                app:argType="integer" />
+    </fragment>
+    <fragment android:id="@+id/searchFragment" android:name="com.example.navigationdemo1.SearchFragment"
+              android:label="fragment_search" tools:layout="@layout/fragment_search"/>
+</navigation>
